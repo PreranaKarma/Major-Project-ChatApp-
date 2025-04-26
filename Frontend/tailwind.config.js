@@ -1,4 +1,4 @@
-// /** @type {import('tailwindcss').Config} */
+// tailwind.config.js
 // export default {
 //   content: [
 //     "./index.html",
@@ -7,24 +7,19 @@
 //   theme: {
 //     extend: {},
 //   },
-//   plugins: [require("daisyui")],
-// };
-
-// /** @type {import('tailwindcss').Config} */
-// export default {
-//   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-//   theme: {
-//     extend: {},
-//   },
 //   plugins: [],
-// };
+// }
 
 
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+
+// tailwind.config.js
+export default  {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {},
   },
-  plugins: [],
-};
+  plugins: [require('daisyui')],
+}
