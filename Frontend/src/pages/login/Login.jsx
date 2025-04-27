@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const Login = () => {
+const LogIn = () => {
   return (
     <div className='flex flex-col items-center justify-center minw-96 mx-auto'>
       <div className='w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
         <h1 className='text-3xl font-semibold text-center text-gray-300'>
-            Login
+            LogIn
             <span className='text-gray-600'> ChatX</span>
         </h1>
         <form action="">
@@ -27,11 +28,11 @@ const Login = () => {
                 className='w-full input input-bordered rounded bg-black text-white p-2 h-10 rounded'
                  />
             </div>
-            <a href="#" className='text-sm text-gray-300 hover:text-blue-600 mt-2 inline-block'>
+            <Link to='/signup' className='text-sm text-gray-300 hover:text-blue-600 mt-2 inline-block'>
                 Don't have an account ?
-            </a>
+            </Link>
             <div>
-                <button className='btn bg-black text-white p-2 rounded btn-block btn-sm mt-2'>Login</button>
+                <button className='btn bg-black text-white p-2 rounded btn-block btn-sm mt-2'>LogIn</button>
             </div>
         </form>
       </div>
@@ -39,4 +40,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default LogIn
