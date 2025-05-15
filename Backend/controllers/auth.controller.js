@@ -37,13 +37,17 @@ export const signup = async (req, res) => {
         await newUser.save();
 
         // Generate token and send response
-        generateTokenAndSetCookie(newUser._id, res);
-        res.status(201).json({
-            _id: newUser._id,
-            fullname: newUser.fullname,
-            username: newUser.username,
-            profilePic: newUser.profilePic,
-        });
+       // In signup
+const token = generateTokenAndSetCookie(newUser._id, res);
+// ...
+res.status(201).json({
+    _id: newUser._id,
+    fullname: newUser.fullname,
+    username: newUser.username,
+    profilePic: newUser.profilePic,
+    token, // ✅ Now it's defined
+});
+
 
     } catch (error) {
         console.error("Error in signup controller:", error.message);
@@ -63,14 +67,17 @@ export const login = async (req, res) => {
             return res.status(400).json({ error: "Invalid credentials" });
         }
 
-        generateTokenAndSetCookie(user._id, res);
+  // In login
+const token = generateTokenAndSetCookie(user._id, res);
+// ...
+res.status(200).json({
+    _id: user._id,
+    fullname: user.fullname,
+    username: user.username,
+    profilePic: user.profilePic,
+    token, // ✅ Now it's defined
+});
 
-        res.status(200).json({
-            _id: user._id,
-            fullname: user.fullname,
-            username: user.username,
-            profilePic: user.profilePic,
-        });
 
     } catch (error) {
         console.error("Error in login controller:", error.message);

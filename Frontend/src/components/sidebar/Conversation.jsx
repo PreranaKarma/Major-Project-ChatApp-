@@ -1,88 +1,45 @@
-// import React from 'react'
+import React from 'react';
+import useConversation from '../../zustand/UseConversation';
 
-// const Conversation = () => {
-//   return (
-//     <>
-//     <div className='flex gap-2 items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer'> 
-//        <div className='avatar online'>
-//           <div className='w-12 h-12 rounded-full'>
-//             <img src="https://cdn0.iconfinder.com/data/icons/communication-line-10/24/account_profile_user_contact_person_avatar_placeholder-512.png" alt="user avatar" />
-//           </div>  
-//         </div>  
-//         <div className='flex flex-col flex-1'>
-//             <div className='flex gap-3 justify-between'>
-//                 <p className='font-bold text-gray-200'>John Deo</p>
-//                 <span className='text-xl'>🙄</span>
-//             </div>
-//             </div>   
-//     </div>
-//     <div className='divider my-0 py-0 h-1' />
-//     </>
-//   )
-// }
+const Conversation = ({ conversation, lastIdx, emoji }) => {
+  const { selectedConversation, setSelectedConversation } = useConversation();
 
-// export default Conversation
+  // Check if this conversation is the selected one
+  const isSelected = selectedConversation?._id === conversation._id;
 
+  const handleClick = () => {
+    // Set the clicked conversation as the selected one
+    setSelectedConversation(conversation);
+  };
 
-
-import React from 'react'
-
-const Conversation = () => {
   return (
     <>
-      <div className="flex gap-2 items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer"> 
+      <div
+        className={`flex gap-2 items-center transition-colors duration-200 rounded p-2 py-1 cursor-pointer ${isSelected ? "bg-sky-500" : ""}`}
+        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0369a1'}
+        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+        onClick={handleClick}
+      >
         <div className="rounded-circle overflow-hidden" style={{ width: "48px", height: "48px" }}>
           <img
-            src="https://cdn0.iconfinder.com/data/icons/communication-line-10/24/account_profile_user_contact_person_avatar_placeholder-512.png"
+            src={conversation.profilePic}
             alt="user avatar"
             className="object-cover w-full h-full"
           />
-        </div>  
+        </div>
         <div className="flex flex-col flex-1">
           <div className="flex justify-between text-gray-300 items-center gap-3">
-            <p className="fw-bold text-gray-100 mb-0">John Deo</p>
-            <span className="text-xl">🙄</span>
+            <p className="fw-bold text-gray-100 mb-0">{conversation.fullname}</p>
+            <span className="text-xl">{emoji}</span>
           </div>
-        </div>   
+        </div>
       </div>
-      <hr className="my-1" />
+      {!lastIdx && <div className="divider my-0 py-0 h-1" />}
     </>
-  )
-}
+  );
+};
 
-export default Conversation
-
-
+export default Conversation;
 
 
 
-
-
-
-
-
-// import React from 'react'
-// const Conversation = () => {
-//   return (
-//     <>
-//       <div className='flex gap-2 items-center hover:bg-sky-500 rounded p-2 py-1 cursor-pointer'> 
-//         <div className='w-12 h-12 rounded-full overflow-hidden'>
-//           <img
-//             src="https://cdn0.iconfinder.com/data/icons/communication-line-10/24/account_profile_user_contact_person_avatar_placeholder-512.png"
-//             alt="user avatar"
-//             className="object-cover w-full h-full"
-//           />
-//         </div>  
-//         <div className='flex flex-col flex-1'>
-//           <div className='flex gap-3 justify-between'>
-//             <p className='font-bold text-gray-200'>John Deo</p>
-//             <span className='text-xl'>🙄</span>
-//           </div>
-//         </div>   
-//       </div>
-//       <div className='divider my-0 py-0 h-1' />
-//     </>
-//   )
-// }
-
-// export default Conversation
