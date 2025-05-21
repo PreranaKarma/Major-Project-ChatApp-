@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 const generateTokenAndSetCookie = (userId, res) => {
-    const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ id: userId }, process.env.JWT_SECRET, {
         expiresIn: "365d",
     });
 
@@ -9,11 +9,12 @@ const generateTokenAndSetCookie = (userId, res) => {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: "strict",
-        maxAge: 365 * 24 * 60 * 60 * 1000, // 7 days
+        maxAge: 365 * 24 * 60 * 60 * 1000, // 365 days
     });
 
     return token; // ✅ Return the token
 };
 
 export default generateTokenAndSetCookie;
+
 

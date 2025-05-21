@@ -1,5 +1,5 @@
-// tailwind.config.js
-// export default {
+// // tailwind.config.js
+// export default  {
 //   content: [
 //     "./index.html",
 //     "./src/**/*.{js,ts,jsx,tsx}",
@@ -7,13 +7,15 @@
 //   theme: {
 //     extend: {},
 //   },
-//   plugins: [],
+//   plugins: [require('daisyui'),
+//     require('tailwind-scrollbar'),
+//   ],
 // }
 
 
 
 // tailwind.config.js
-export default  {
+export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -21,7 +23,11 @@ export default  {
   theme: {
     extend: {},
   },
-  plugins: [require('daisyui'),
+  plugins: [
+    require('daisyui'),
     require('tailwind-scrollbar'),
   ],
-}
+};
+
+
+
