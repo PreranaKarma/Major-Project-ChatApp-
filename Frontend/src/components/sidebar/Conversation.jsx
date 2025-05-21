@@ -1,11 +1,14 @@
 import React from 'react';
 import useConversation from '../../zustand/UseConversation';
+import { useSocketContext } from '../../context/SocketContext';
 
 const Conversation = ({ conversation, lastIdx, emoji }) => {
   const { selectedConversation, setSelectedConversation } = useConversation();
 
   // Check if this conversation is the selected one
   const isSelected = selectedConversation?._id === conversation._id;
+  const {onlineUsers} = useSocketContext();
+  const isonline = onlineUsers.includes(conversation._id)
 
   const handleClick = () => {
     // Set the clicked conversation as the selected one
@@ -15,7 +18,7 @@ const Conversation = ({ conversation, lastIdx, emoji }) => {
   return (
     <>
       <div
-        className={`flex gap-2 items-center transition-colors duration-200 rounded p-2 py-1 cursor-pointer ${isSelected ? "bg-sky-500" : ""}`}
+        className={`flex gap-2 items-center transition-colors duration-200 rounded p-2 py-1 cursor-pointer ${isSelected ? "bg-sky-500" : ""} ${isonline ? "online" : ""}`}
         onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0369a1'}
         onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
         onClick={handleClick}

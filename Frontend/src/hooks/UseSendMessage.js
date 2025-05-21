@@ -10,6 +10,7 @@ const sendMessage = async (message) => {
     setLoading(true);
     try {
         const token = localStorage.getItem("token");
+        console.log("Token from localStorage:", token);
         if (!token) {
             toast.error("No token found!");
             setLoading(false);
@@ -19,10 +20,10 @@ const sendMessage = async (message) => {
         const decodedToken = JSON.parse(atob(token.split('.')[1])); // Get payload from JWT
         const senderId = decodedToken.id;
 
-        // console.log("📦 Token from localStorage:", token);
-        // console.log("📨 Sending message:", message);
-        // console.log("👤 Sender ID:", senderId);
-        // console.log("📨 Sending to ID:", selectedConversation._id);
+        console.log("📦 Token from localStorage:", token);
+        console.log("📨 Sending message:", message);
+        console.log("👤 Sender ID:", senderId);
+        console.log("📨 Sending to ID:", selectedConversation._id);
 
         const res = await fetch(`http://localhost:5000/api/message/send/${selectedConversation._id}`, {
             method: 'POST',

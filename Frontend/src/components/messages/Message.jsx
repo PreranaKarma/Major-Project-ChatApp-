@@ -59,7 +59,7 @@ const Message = ({ message }) => {
   const chatClassName = fromMe ? 'chat-end' : 'chat-start';
   const profilePic = fromMe
     ? authUser.profilePic
-    : selectedConversation?.profilePic || '/default-profile.png';
+    : selectedConversation?.profilePic;
 
   const bubbleBgColor = fromMe ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black';
   const timeAlign = fromMe ? 'text-right' : 'text-left';
@@ -68,6 +68,8 @@ const Message = ({ message }) => {
     hour: '2-digit',
     minute: '2-digit',
   });
+
+  const shakeClass = message.shouldShake ? "shake" : "";
 
   return (
     <div className={`chat ${chatClassName}`}>
@@ -78,7 +80,7 @@ const Message = ({ message }) => {
         <img src={profilePic} alt="Tailwind css chat bubble component" />
       </div>
 
-      <div className={`chat-bubble text-white pb-2 ${bubbleBgColor}`}>
+      <div className={`chat-bubble text-white pb-2 ${bubbleBgColor} ${shakeClass}`}>
         {message.message}
       </div>
 
